@@ -9,6 +9,7 @@
 #include <mcl/gmp_util.hpp>
 #include <memory.h>
 #include <mcl/array.hpp>
+#include <mcl/stdio.h>
 
 #ifndef MCL_MAX_BIT_SIZE
 	#define MCL_MAX_BIT_SIZE 521
@@ -333,9 +334,9 @@ inline const char* getIoSeparator(int ioMode)
 inline void dump(const char *s, size_t n)
 {
 	for (size_t i = 0; i < n; i++) {
-		printf("%02x ", (uint8_t)s[i]);
+		MCL_PRINTF("%02x ", (uint8_t)s[i]);
 	}
-	printf("\n");
+	MCL_PRINTF("\n");
 }
 
 #ifndef CYBOZU_DONT_USE_STRING

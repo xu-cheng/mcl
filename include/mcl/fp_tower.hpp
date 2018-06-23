@@ -32,7 +32,7 @@ public:
 		for (size_t i = 0; i < n; i++) {
 			mcl::fp::dumpUnit(v_[n - 1 - i]);
 		}
-		printf("\n");
+		MCL_PRINTF("\n");
 	}
 	template<class OutputStream>
 	void save(bool *pb, OutputStream& os, int) const

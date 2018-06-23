@@ -62,9 +62,9 @@ inline Mode StrToMode(const std::string& s)
 inline void dumpUnit(Unit x)
 {
 #if MCL_SIZEOF_UNIT == 4
-	printf("%08x", (uint32_t)x);
+	MCL_PRINTF("%08x", (uint32_t)x);
 #else
-	printf("%016llx", (unsigned long long)x);
+	MCL_PRINTF("%016llx", (unsigned long long)x);
 #endif
 }
 
@@ -110,7 +110,7 @@ public:
 		for (size_t i = 0; i < N; i++) {
 			fp::dumpUnit(v_[N - 1 - i]);
 		}
-		printf("\n");
+		MCL_PRINTF("\n");
 	}
 	static inline void init(bool *pb, const mpz_class& _p, fp::Mode mode = fp::FP_AUTO)
 	{
