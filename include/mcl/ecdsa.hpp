@@ -170,7 +170,7 @@ struct Signature : public mcl::fp::Serializable<Signature> {
 		if (!b) throw cybozu::Exception("ecdsa:Signature:save");
 	}
 #endif
-#ifndef CYBOZU_DONT_USE_STRING
+#if !defined(CYBOZU_DONT_USE_STRING) && !defined(SGX_ENCLAVE)
 	friend std::istream& operator>>(std::istream& is, Signature& self)
 	{
 		self.load(is, fp::detectIoMode(Ec::getIoMode(), is));

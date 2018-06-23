@@ -72,6 +72,7 @@ public:
 		{
 			S_.save(os, ioMode);
 		}
+#ifndef SGX_ENCLAVE
 		friend std::istream& operator>>(std::istream& is, Signature& self)
 		{
 			self.load(is, fp::detectIoMode(G1::getIoMode(), is));
@@ -82,6 +83,7 @@ public:
 			self.save(os, fp::detectIoMode(G1::getIoMode(), os));
 			return os;
 		}
+#endif
 		bool operator==(const Signature& rhs) const
 		{
 			return S_ == rhs.S_;
@@ -165,6 +167,7 @@ public:
 		{
 			xQ_.save(os, ioMode);
 		}
+#ifndef SGX_ENCLAVE
 		friend std::istream& operator>>(std::istream& is, PublicKey& self)
 		{
 			self.load(is, fp::detectIoMode(G2::getIoMode(), is));
@@ -175,6 +178,7 @@ public:
 			self.save(os, fp::detectIoMode(G2::getIoMode(), os));
 			return os;
 		}
+#endif
 		bool operator==(const PublicKey& rhs) const
 		{
 			return xQ_ == rhs.xQ_;
@@ -218,6 +222,7 @@ public:
 		{
 			x_.save(os, ioMode);
 		}
+#ifndef SGX_ENCLAVE
 		friend std::istream& operator>>(std::istream& is, SecretKey& self)
 		{
 			self.load(is, fp::detectIoMode(Fr::getIoMode(), is));
@@ -228,6 +233,7 @@ public:
 			self.save(os, fp::detectIoMode(Fr::getIoMode(), os));
 			return os;
 		}
+#endif
 		bool operator==(const SecretKey& rhs) const
 		{
 			return x_ == rhs.x_;

@@ -6,7 +6,7 @@
 #include <cybozu/bit_operation.hpp>
 #include <cybozu/xorshift.hpp>
 #include <assert.h>
-#ifndef CYBOZU_DONT_USE_STRING
+#if !defined(CYBOZU_DONT_USE_STRING) && !defined(SGX_ENCLAVE)
 #include <iostream>
 #endif
 #include <mcl/array.hpp>
@@ -1730,6 +1730,7 @@ public:
 		getStr(s, base);
 		return s;
 	}
+#ifndef SGX_ENCLAVE
 	inline friend std::ostream& operator<<(std::ostream& os, const VintT& x)
 	{
 		return os << x.getStr(os.flags() & std::ios_base::hex ? 16 : 10);
@@ -1739,6 +1740,7 @@ public:
 		x.load(is);
 		return is;
 	}
+#endif
 #endif
 #ifndef CYBOZU_DONT_USE_EXCEPTION
 	void setStr(const std::string& str, int base = 0)

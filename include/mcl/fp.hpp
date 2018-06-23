@@ -477,6 +477,7 @@ public:
 	{
 		init(mstr, mode);
 	}
+#ifndef SGX_ENCLAVE
 	friend inline std::ostream& operator<<(std::ostream& os, const FpT& self)
 	{
 		self.save(os, fp::detectIoMode(getIoMode(), os));
@@ -487,6 +488,7 @@ public:
 		self.load(is, fp::detectIoMode(getIoMode(), is));
 		return is;
 	}
+#endif
 #endif
 #ifndef CYBOZU_DONT_USE_EXCEPTION
 	static inline void init(const mpz_class& _p, fp::Mode mode = fp::FP_AUTO)

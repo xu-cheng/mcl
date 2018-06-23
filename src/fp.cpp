@@ -529,7 +529,7 @@ void copyByteToUnitAsLE(Unit *dst, const uint8_t *src, size_t byteSize)
 	*dst = x;
 }
 
-#ifndef CYBOZU_DONT_USE_STRING
+#if !defined(CYBOZU_DONT_USE_STRING) && !defined(SGX_ENCLAVE)
 int detectIoMode(int ioMode, const std::ios_base& ios)
 {
 	if (ioMode & ~IoPrefix) return ioMode;

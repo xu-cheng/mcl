@@ -340,7 +340,9 @@ inline void dump(const char *s, size_t n)
 }
 
 #ifndef CYBOZU_DONT_USE_STRING
+#ifndef SGX_ENCLAVE
 int detectIoMode(int ioMode, const std::ios_base& ios);
+#endif
 
 inline void dump(const std::string& s)
 {

@@ -927,6 +927,7 @@ public:
 	{
 		init(astr, bstr, mode);
 	}
+#ifndef SGX_ENCLAVE
 	friend inline std::istream& operator>>(std::istream& is, EcT& self)
 	{
 		self.load(is, fp::detectIoMode(getIoMode(), is));
@@ -937,6 +938,7 @@ public:
 		self.save(os, fp::detectIoMode(getIoMode(), os));
 		return os;
 	}
+#endif
 #endif
 };
 

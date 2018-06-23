@@ -104,6 +104,7 @@ struct ElgamalT {
 			cybozu::StringInputStream is(str);
 			load(is, ioMode);
 		}
+#ifndef SGX_ENCLAVE
 		friend inline std::ostream& operator<<(std::ostream& os, const CipherText& self)
 		{
 			self.save(os, fp::detectIoMode(Ec::getIoMode(), os));
@@ -114,6 +115,7 @@ struct ElgamalT {
 			self.load(is, fp::detectIoMode(Ec::getIoMode(), is));
 			return is;
 		}
+#endif
 		// obsolete
 		std::string toStr() const { return getStr(); }
 		void fromStr(const std::string& str) { setStr(str); }

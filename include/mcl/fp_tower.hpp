@@ -400,6 +400,7 @@ public:
 #endif
 #ifndef CYBOZU_DONT_USE_STRING
 	Fp2T(const std::string& a, const std::string& b, int base = 0) : a(a, base), b(b, base) {}
+#ifndef SGX_ENCLAVE
 	friend std::istream& operator>>(std::istream& is, Fp2T& self)
 	{
 		self.load(is, fp::detectIoMode(Fp::BaseFp::getIoMode(), is));
@@ -410,6 +411,7 @@ public:
 		self.save(os, fp::detectIoMode(Fp::BaseFp::getIoMode(), os));
 		return os;
 	}
+#endif
 #endif
 private:
 	/*
@@ -698,7 +700,7 @@ struct Fp2DblT {
 		FpDbl::mod(y.a, x.a);
 		FpDbl::mod(y.b, x.b);
 	}
-#ifndef CYBOZU_DONT_USE_STRING
+#if !defined(CYBOZU_DONT_USE_STRING) && !defined(SGX_ENCLAVE)
 	friend std::ostream& operator<<(std::ostream& os, const Fp2DblT& x)
 	{
 		return os << x.a << ' ' << x.b;
@@ -796,7 +798,7 @@ struct Fp6T : public fp::Serializable<Fp6T<_Fp>,
 		if (!b) throw cybozu::Exception("Fp6T:save");
 	}
 #endif
-#ifndef CYBOZU_DONT_USE_STRING
+#if !defined(CYBOZU_DONT_USE_STRING) && !defined(SGX_ENCLAVE)
 	friend std::istream& operator>>(std::istream& is, Fp6T& self)
 	{
 		self.load(is, fp::detectIoMode(Fp::BaseFp::getIoMode(), is));
@@ -1215,7 +1217,7 @@ struct Fp12T : public fp::Serializable<Fp12T<Fp>,
 		if (!b) throw cybozu::Exception("Fp12T:save");
 	}
 #endif
-#ifndef CYBOZU_DONT_USE_STRING
+#if !defined(CYBOZU_DONT_USE_STRING) && !defined(SGX_ENCLAVE)
 	friend std::istream& operator>>(std::istream& is, Fp12T& self)
 	{
 		self.load(is, fp::detectIoMode(Fp::BaseFp::getIoMode(), is));
